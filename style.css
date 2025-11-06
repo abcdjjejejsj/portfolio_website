@@ -427,19 +427,38 @@ td {
     .nav-links {
         position: fixed;
         top: 68px; /* Height of navbar */
-        right: -100%;
+         right: 0;/* Align it to the right edge */
         width: 70%;
         height: calc(100vh - 68px);
         background-color: var(--bg-light);
         flex-direction: column;
         align-items: center;
         padding-top: 2rem;
-        transition: right 0.4s ease-in-out;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+        z-index: 999; 
+
+        /* 🔑 KEY CHANGE: Hides it visually and removes interaction */
+        transform: translateX(100%); 
+        transition: transform 0.4s ease-in-out; 
+
+        /* 🛑 MOST IMPORTANT FIX: Removes element from mouse/touch interaction */
+        /* It still occupies space, but this ensures nothing can click/interact with the empty space */
+        pointer-events: none; 
+        
+        /* Ensures it's initially transparent/unseen */
+        opacity: 0; 
+        display: none;
     }
 
     .nav-links.open {
-        right: 0;
+        transform: translateX(0); /* Slide into view */
+        
+        /* 🛑 MOST IMPORTANT FIX: Allows user interaction */
+        pointer-events: auto; 
+        
+        /* Makes it visible */
+        opacity: 1; 
+        display:block;
     }
 
     .nav-links li {
