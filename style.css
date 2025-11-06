@@ -1,0 +1,623 @@
+/* === ROOT VARIABLES & GLOBAL STYLES === */
+:root {
+    --bg-color: #0a192f;        /* Dark Navy Blue */
+    --bg-light: #112240;       /* Lighter Navy */
+    --text-color: #ccd6f6;     /* Light Slate */
+    --text-light: #8892b0;     /* Slate */
+    --accent-color: #64ffda;   /* Bright Green/Cyan */
+    --accent-hover: rgba(100, 255, 218, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+main {
+    padding: 0 5%; /* Add some padding to main content */
+}
+
+section {
+    padding: 6rem 1rem 4rem 1rem;
+    min-height: 60vh;
+}
+
+.hed {
+    text-align: center;
+    font-size: clamp(1.8rem, 5vw, 2.5rem); /* Responsive font size */
+    color: var(--accent-color);
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+/* === 1. NAVBAR === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(10, 25, 47, 0.85); /* Semi-transparent bg */
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a .underStyle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover .underStyle {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+/* === 2. HERO === */
+.MainHero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 5%;
+    gap: 2rem;
+    flex-wrap: wrap-reverse; /* Stack image on top on mobile */
+}
+
+.MainHero .txt {
+    flex-basis: 50%;
+    min-width: 300px;
+}
+
+.curs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.myname {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 700;
+    color: var(--text-color);
+}
+#first {
+    color: var(--accent-color);
+}
+
+.pos {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.btn a {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn a:hover {
+    background-color: var(--accent-hover);
+}
+
+.MainHero .photo {
+    flex-basis: 40%;
+    text-align: center;
+}
+
+.photo img {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 0 25px var(--accent-hover);
+}
+
+/* === 3. ABOUT === */
+.mainAb {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.abt {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    text-align: left;
+}
+
+.hgt {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* === 4. EDUCATION === */
+.scroll-note {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.mainTab {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 600px; /* Ensure table has min-width for scrolling */
+    border-collapse: collapse;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+table caption {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+thead {
+    background-color: var(--bg-light);
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--bg-light);
+}
+
+th {
+    color: var(--accent-color);
+}
+
+td {
+    color: var(--text-light);
+}
+
+/* === 5. SKILLS === */
+.card-div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.out {
+    background-color: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.out:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-head {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+}
+
+.card-ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card-ul li {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+}
+
+/* === 6. PROJECTS === */
+.proj_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.outProject {
+    background-color: var(--bg-light);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.outProject:hover {
+    transform: translateY(-5px);
+}
+
+.pro_hed {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.prBtn {
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top: 0.5rem;
+}
+
+/* Style buttons differently */
+.prBtn:nth-of-type(1) { /* Live Demo */
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: 2px solid var(--accent-color);
+}
+.prBtn:nth-of-type(1):hover {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+.prBtn:nth-of-type(2) { /* Source Code */
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+}
+.prBtn:nth-of-type(2):hover {
+    background-color: var(--text-light);
+    color: var(--bg-color);
+}
+
+
+/* === 7. CONTACT CARD === */
+.main_con {
+    background-color: var(--bg-light); /* Give this section a bg */
+    padding-top: 6rem;
+}
+
+.main_card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-color);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.prof {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.nme {
+    display: block;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.conVal {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Wrap long text */
+}
+
+.conVal i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.con {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.con a {
+    font-size: 2.2rem;
+    color: var(--text-light);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.con a:hover {
+    transform: scale(1.1);
+}
+/* Social hover colors */
+.con a[aria-label="LinkedIn"]:hover { color: #0077B5; }
+.con a[aria-label="GitHub"]:hover { color: #ffffff; }
+.con a[aria-label="Instagram"]:hover { color: #C13584; }
+
+
+/* === 8. FOOTER === */
+.main_foot {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--bg-light);
+    color: var(--text-light);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 68px; /* Height of navbar */
+        right: -100%;
+        width: 70%;
+        height: calc(100vh - 68px);
+        background-color: var(--bg-light);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 2rem;
+        transition: right 0.4s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links.open {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+
+    .MainHero {
+        flex-direction: column-reverse; /* Stack image above text */
+        text-align: center;
+        min-height: 80vh;
+        padding-top: 4rem;
+    }
+    
+    .MainHero .photo {
+        margin-bottom: 2rem;
+    }
+    
+    .photo img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .curs {
+        justify-content: center;
+    }
+
+    section {
+        padding: 4rem 1rem;
+    }
+
+    .abt {
+        text-align: center;
+    }
+}
+
+/* === 4. EDUCATION (New Card Layout) === */
+.education-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically */
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-card {
+    background: var(--bg-light);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid var(--accent-color); /* Adds a nice accent */
+    transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+}
+
+.education-card h3 {
+    color: var(--text-color);
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+}
+
+.education-card .institute {
+    color: var(--text-light);
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details-container .year {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.details-container .grade {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+/* === 6.5. FULL STACK PROJECT === */
+.full-stack {
+    /* Uses the default 'section' padding */
+}
+
+.full-stack-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--bg-light); /* Matches the section card style */
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.project-image-mockup img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--text-light);
+    object-fit: cover;
+}
+
+.project-details h3 {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.project-details h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.tech-tag {
+    background-color: var(--accent-hover);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px; /* Pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap; /* Added for responsiveness */
+    gap: 1rem;
+}
+
+/* We re-use the .prBtn class from the project section */
+.project-links .prBtn {
+    margin-top: 0;
+}
+
+/* === Responsive for Full Stack Section === */
+@media (max-width: 900px) {
+    .full-stack-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-image-mockup {
+        margin-bottom: 1.5rem; /* Add space when stacked */
+    }
+
+    .project-details h3 {
+        font-size: 1.6rem;
+    }
+}
